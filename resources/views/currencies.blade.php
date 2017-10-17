@@ -8,7 +8,7 @@
     <div class="my-3">
         <div class="row">
             <div class="col-sm-12">
-                <a href="/currency" class="btn btn-success float-right">Add New</a>
+                <a href="currencies/create" class="btn btn-success float-right">Add New</a>
             </div>
         </div>
     </div>

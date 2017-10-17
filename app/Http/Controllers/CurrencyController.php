@@ -13,7 +13,9 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        //
+        return view('currencies', [
+            'currencies' => Currency::all()
+        ]);
     }
 
     /**
@@ -32,15 +34,22 @@ class CurrencyController extends Controller
      */
     public function store(Request $request)
     {
+
         // validate data
         $this->validate($request, [
-            'title' => 'required|50',
-            'prefix' => 'required|20'
+            'name' => 'required|max:50',
+            'prefix' => 'required|max:3'
         ]);
 
         // save data
+        $currency = new Currency();
+        $currency->name = $request->name;
+        $currency->prefix = $request->prefix;
+        $currency->save();
 
         // redirect
+        return redirect()->route('currencies.index');
+
     }
 
     /**
