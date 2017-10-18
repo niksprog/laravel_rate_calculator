@@ -1,9 +1,12 @@
 <?php
 
+// TODO add Session flash support for messages
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Currency as Currency;
+use Session;
 
 class CurrencyController extends Controller
 {
@@ -13,9 +16,7 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        return view('currencies', [
-            'currencies' => Currency::all()
-        ]);
+        return view('currencies.index')->withCurrencies(Currency::all());
     }
 
     /**
@@ -59,7 +60,8 @@ class CurrencyController extends Controller
      */
     public function show($id)
     {
-        //
+        // Not supported functionality redirect to Currencies list
+        return redirect()->route('currencies.index');
     }
 
     /**
@@ -69,7 +71,7 @@ class CurrencyController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('currencies.edit')->withCurrency(Currency::findOrFail($id));
     }
 
     /**
@@ -80,7 +82,23 @@ class CurrencyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        // validate data
+        $this->validate($request, [
+            'id' => 'exists',
+            'name' => 'required|max:50',
+            'prefix' => 'required|max:3'
+        ]);
+
+        // save data
+        $currency = Currency::find($id);
+        $currency->name = $request->name;
+        $currency->prefix = $request->prefix;
+        $currency->save();
+
+        // redirect
+        return redirect()->route('currencies.index');
+
     }
 
     /**
@@ -90,6 +108,7 @@ class CurrencyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $currency = Currency::find($id);
+        $currency->delete();
     }
 }

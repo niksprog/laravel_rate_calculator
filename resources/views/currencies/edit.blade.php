@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('page_title', 'New Currency')
+@section('page_title', 'Edit Currency')
 
 @section('page_styles')
     {!! Html::style('js/parsley/css/parsley.css') !!}
@@ -9,7 +9,7 @@
 @section('page_content')
     <div class="row justify-content-sm-center">
         <div class="col-sm-12">
-            {!! Form::open(['route' => 'currencies.store','data-parsley-validate' => '']) !!}
+            {!! Form::model($currency, ['method' => 'PATCH', 'route' => ['currencies.update', $currency->id], 'data-parsley-validate' => '']) !!}
 
                 {{ Form::label('name', 'Name') }}
                 {{ Form::text('name', null, ['class' => 'form-control', 'required' => '']) }}
@@ -19,7 +19,7 @@
 
                 <hr>
 
-                {{ Form::submit('Create Currency', ['class' => 'btn btn-primary btn-block']) }}
+                {{ Form::submit('Save Changes', ['class' => 'btn btn-primary btn-block']) }}
 
             {!! Form::close() !!}
         </div>

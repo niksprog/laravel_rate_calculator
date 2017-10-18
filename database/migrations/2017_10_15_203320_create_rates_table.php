@@ -15,7 +15,8 @@ class CreateRatesTable extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('currency_id');
+            $table->integer('from_currency_id');
+            $table->integer('to_currency_id');
             $table->decimal('rate', 10, 5);
             $table->timestamps();
         });

@@ -2,17 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class RatesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
      * @return void
      */
     public function run()
     {
-        $this->call([
-            CurrenciesTableSeeder::class,
-            RatesTableSeeder::class,
-        ]);
+        //
     }
 }

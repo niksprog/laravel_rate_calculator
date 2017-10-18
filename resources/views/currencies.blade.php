@@ -29,8 +29,9 @@
                             <td>{{$currency->name}}</td>
                             <td>{{$currency->prefix}}</td>
                             <td>
-                                <a href="currency/{{$currency->id}}" class="btn btn-warning">edit</a>
-                                <button type="button" class="btn btn-danger" v-on:click="deleteRecord">delete</button>
+                                {{ Html::linkRoute('currencies.edit', 'Edit', [$currency->id], ['class'=> 'btn btn-primary btn-sm']) }}
+                                {{--<a href="currency/{{$currency->id}}" class="btn btn-warning">edit</a>--}}
+                                {{--<button type="button" class="btn btn-danger" v-on:click="deleteRecord">delete</button>--}}
                             </td>
                         </tr>
                     @endforeach
