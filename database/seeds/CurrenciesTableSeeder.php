@@ -23,7 +23,7 @@ class CurrenciesTableSeeder extends Seeder
          * CAD - Canadian Dollar
          */
 
-//        DB::table('currencies')->delete();
+        DB::table('currencies')->delete();
 
         Currency::create(['name' => 'Euro', 'prefix' => 'EUR']);
         Currency::create(['name' => 'US Dollar', 'prefix' => 'USD']);

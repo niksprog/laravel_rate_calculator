@@ -11,8 +11,7 @@
 |
 */
 
-//Route::get('/', 'CalculatorController@show');
-
+Route::get('/', 'CalculatorController@index');
 
 Route::resource('rates', 'RateController');
 Route::resource('currencies', 'CurrencyController');

@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('page_title', 'New Rate')
+@section('page_title', 'Edit Rate')
 
 @section('page_styles')
     {!! Html::style('js/parsley/css/parsley.css') !!}
@@ -9,7 +9,7 @@
 @section('page_content')
     <div class="row justify-content-sm-center">
         <div class="col-sm-12">
-            {!! Form::open(['route' => 'rates.store','data-parsley-validate' => '']) !!}
+            {!! Form::model($rate, ['method' => 'PATCH', 'route' => ['rates.update', $rate->id], 'data-parsley-validate' => '']) !!}
 
                 {{ Form::label('from_currency_id', 'From Currency') }}
                 {{ Form::select('from_currency_id', $options, null, [
@@ -39,7 +39,7 @@
 
                 <hr>
 
-                {{ Form::submit('Create Rate', ['class' => 'btn btn-primary btn-block']) }}
+                {{ Form::submit('Save Changes', ['class' => 'btn btn-primary btn-block']) }}
 
             {!! Form::close() !!}
         </div>
@@ -47,6 +47,9 @@
 @endsection
 
 @section('page_scripts')
+    <script>
+
+    </script>
     {!! Html::script('js/parsley/parsley.min.js') !!}
     <script>
 

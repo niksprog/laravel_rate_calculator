@@ -1,0 +1,17 @@
+Rates
+
+Euro -> US Dollar (1.3764)
+Euro -> Swiss Franc (1.2079)
+Euro -> British Pound (0.8731)
+US Dollar -> JPY (76.7200)
+Swiss Franc -> US Dollar (1.1379)
+British Pound -> CAD (1.5648)
+
+Currencies
+
+Euro
+US Dollar
+Swiss Franc
+British Pound
+JPY
+CAD
