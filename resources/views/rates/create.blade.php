@@ -57,6 +57,7 @@
             }
         });
 
-        $('#form').parsley();
+        $('form').parsley();
+
     </script>
 @endsection

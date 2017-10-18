@@ -31,10 +31,14 @@
     <div class="row">
         <div class="col-sm-12" style="padding:0">
             <nav class="nav navbar navbar-light bg-light justify-content-end">
-                <a class="nav-link" href="/">Calculator</a>
-                <a class="nav-link" href="/currencies">Currencies</a>
-                <a class="nav-link" href="/rates">Rates</a>
-                <a class="nav-link" href="/calculations">Calculations</a>
+                {{ Html::linkRoute('home', 'Calculator', [], ['class' => 'nav-link']) }}
+                {{ Html::linkRoute('currencies.index', 'Currencies', [], ['class' => 'nav-link']) }}
+                {{ Html::linkRoute('rates.index', 'Rates', [], ['class' => 'nav-link']) }}
+                {{ Html::linkRoute('calculations.index', 'Calculations', [], ['class' => 'nav-link']) }}
+                {{--<a class="nav-link" href="/">Calculator</a>--}}
+                {{--<a class="nav-link" href="/currencies">Currencies</a>--}}
+                {{--<a class="nav-link" href="/rates">Rates</a>--}}
+                {{--<a class="nav-link" href="/calculations">Calculations</a>--}}
             </nav>
         </div>
     </div>

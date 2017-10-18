@@ -2,6 +2,15 @@
 
 @section('page_title', 'Currencies')
 
+@section('page_styles')
+    <style>
+        .pagination {
+            justify-content: center;
+        }
+    </style>
+@endsection
+
+
 @section('page_content')
     <div class="my-3">
         <div class="row">
@@ -40,6 +49,16 @@
                 @endif
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <?php
+            // Used command line to add bootstrap 4 pagination support
+            // php artisan vendor:publish --tag=laravel-pagination
+            ?>
+            {!! $currencies->links('vendor.pagination.bootstrap-4'); !!}
         </div>
     </div>
 

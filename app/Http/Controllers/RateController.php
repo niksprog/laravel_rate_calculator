@@ -6,10 +6,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Rate as Rate;
-use App\Currency as Currency;
+use App\Http\Controllers\CurrencyController as CurrencyController;
 
 class RateController extends Controller
 {
+
+    /**
+     * Find Rate to calculate Exchange amounts.
+     * @param $from_currency_id
+     * @param $to_currency_id
+     * @return int
+     */
+    public static function getRate($from_currency_id, $to_currency_id)
+    {
+
+        $rate = Rate::where([
+            'from_currency_id' => $from_currency_id,
+            'to_currency_id' => $to_currency_id
+        ])->orderBy('id', 'desc')->first();
+
+        if($rate) {
+            return $rate->rate;
+        }
+
+        $rate = Rate::where([
+            'from_currency_id' => $to_currency_id,
+            'to_currency_id' => $from_currency_id
+        ])->orderBy('id', 'desc')->first();
+
+        if($rate) {
+            return (1 / $rate->rate);
+        }
+
+        return 1;
+
+    }
 
     /**
      * Display a listing of the resource.
@@ -28,7 +59,7 @@ class RateController extends Controller
      */
     public function create()
     {
-        return view('rates.create')->withOptions(Currency::getSelectOptions());
+        return view('rates.create')->withOptions(CurrencyController::getSelectOptions());
     }
 
     /**
@@ -40,8 +71,8 @@ class RateController extends Controller
     {
         // validate data
         $this->validate($request, [
-            'from_currency_id' => 'required|different:to_currency_id',
-            'to_currency_id' => 'required|different:from_currency_id',
+            'from_currency_id' => 'required|integer|different:to_currency_id',
+            'to_currency_id' => 'required|integer|different:from_currency_id',
             'rate' => 'required|regex:/^\d*(\.\d{1,5})?$/'
         ]);
 
@@ -76,7 +107,7 @@ class RateController extends Controller
     {
         return view('rates.edit', [
             'rate' => Rate::find($id),
-            'options' => Currency::getSelectOptions()
+            'options' => CurrencyController::getSelectOptions()
         ]);
     }
 
@@ -91,8 +122,8 @@ class RateController extends Controller
         // Validate data
         $this->validate($request, [
             'id' => 'exists',
-            'from_currency_id' => 'required|different:to_currency_id',
-            'to_currency_id' => 'required|different:from_currency_id',
+            'from_currency_id' => 'required|integer|different:to_currency_id',
+            'to_currency_id' => 'required|integer|different:from_currency_id',
             'rate' => 'required|regex:/^\d*(\.\d{1,5})?$/'
         ]);
 

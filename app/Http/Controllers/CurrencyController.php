@@ -32,7 +32,8 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        return view('currencies.index')->withCurrencies(Currency::all());
+        $currencies = Currency::paginate(5);
+        return view('currencies.index')->withCurrencies($currencies);
     }
 
     /**

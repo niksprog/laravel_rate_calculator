@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', 'CalculatorController@index');
+Route::get('/', 'CalculatorController@index')->name('home');
+Route::get('calculations', 'CalculationController@index')->name('calculations.index');
+
+Route::post('calculate', 'CalculatorController@calculate')->name('calculator.calculate');
 
 Route::resource('rates', 'RateController');
 Route::resource('currencies', 'CurrencyController');
