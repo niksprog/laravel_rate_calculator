@@ -30,8 +30,8 @@
                     @foreach($calculations as $calculation)
                         <tr>
                             <td>{{$calculation->id}}</td>
-                            <td>{{$calculation->from_currency_id}}</td>
-                            <td>{{$calculation->to_currency_id}}</td>
+                            <td>{{$calculation->from_currency->prefix}}</td>
+                            <td>{{$calculation->to_currency->prefix}}</td>
                             <td>{{$calculation->amount}}</td>
                             <td>{{$calculation->rate}}</td>
                             <td>{{$calculation->result}}</td>
